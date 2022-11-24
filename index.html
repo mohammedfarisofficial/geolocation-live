@@ -50,8 +50,11 @@
      
       function getLocation() {
   if (navigator.geolocation) {
+    console.log("support")
     navigator.geolocation.getCurrentPosition(showPosition);
+    
   } else {
+    console.log("not support")
     container.innerHTML = "Geolocation is not supported by this browser.";
   }
 }
