@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document 5</title>
+    <title>Document 6</title>
     <link
       href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css"
       rel="stylesheet"
@@ -52,6 +52,7 @@
   if (navigator.geolocation) {
     console.log("support")
     navigator.geolocation.getCurrentPosition(position=>{
+      console.log(position)
     container.innerHTML = "Latitude: " + position.coords.latitude +
   "<br>Longitude: " + position.coords.longitude;
         console.log(position.coords.latitude)   }                                     
