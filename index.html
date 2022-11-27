@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document 11</title>
+    <title>Document 12</title>
     <link
       href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css"
       rel="stylesheet"
@@ -15,6 +15,14 @@
         margin: 0;
         padding: 0;
       }
+      .marker {
+  background-image: url('mapbox-icon.png');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
     </style>
   </head>
   <body>
@@ -25,6 +33,35 @@
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
 
     <script>
+      
+      const geojson = {
+  type: 'FeatureCollection',
+  features: [
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [-77.032, 38.913]
+      },
+      properties: {
+        title: 'Mapbox',
+        description: 'Washington, D.C.'
+      }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [-122.414, 37.776]
+      },
+      properties: {
+        title: 'Mapbox',
+        description: 'San Francisco, California'
+      }
+    }
+  ]
+};
+      
       mapboxgl.accessToken =
         "pk.eyJ1IjoibW9oYW1tZWRmYXJpc29mZmljaWFsIiwiYSI6ImNrenp1eGdxNTBkcjQzYm54eTJ1NWM4cnUifQ.i0BdrNMcqwUIMU1o5cwJ7g";
       const map = new mapboxgl.Map({
@@ -44,7 +81,17 @@
           showUserHeading: true,
         })
       );
+      //code for markers
+      // add markers to map
+for (const feature of geojson.features) {
+  // create a HTML element for each feature
+  const el = document.createElement('div');
+  el.className = 'marker';
 
+  // make a marker for each feature and add to the map
+  new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).addTo(map);
+}
+      //end code for markers
       
        const container = document.querySelector("#container");
      
