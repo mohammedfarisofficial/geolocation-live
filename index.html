@@ -101,8 +101,8 @@ for (const feature of geojson.features) {
     navigator.geolocation.getCurrentPosition((position)=>{
       console.log(position)
       console.log("support 2")
-    container.innerHTML = "Latitude: " + position.coords.latitude +
-  "<br>Longitude: " + position.coords.longitude;
+    container.innerHTML = "Latitude: " + position.coords.latitude.toFixed(3) +
+  "<br>Longitude: " + position.coords.longitude.toFixed(3);
         console.log(position.coords.latitude)   }                                     
                                             
 );
