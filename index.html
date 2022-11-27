@@ -80,6 +80,7 @@
       getLocation()
       
       //code for markers
+      
           const geojson = {
   type: 'FeatureCollection',
   features: [
@@ -92,6 +93,17 @@
       properties: {
         title: 'Mapbox',
         description: 'Washington, D.C.'
+      }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [10.916, 75.923]
+      },
+      properties: {
+        title: 'Mapbox',
+        description: 'Tirur, D.C.'
       }
     },
     {
