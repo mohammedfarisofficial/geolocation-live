@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document 12</title>
+    <title>Document 13</title>
     <link
       href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css"
       rel="stylesheet"
@@ -34,33 +34,7 @@
 
     <script>
       
-      const geojson = {
-  type: 'FeatureCollection',
-  features: [
-    {
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [-77.032, 38.913]
-      },
-      properties: {
-        title: 'Mapbox',
-        description: 'Washington, D.C.'
-      }
-    },
-    {
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [-122.414, 37.776]
-      },
-      properties: {
-        title: 'Mapbox',
-        description: 'San Francisco, California'
-      }
-    }
-  ]
-};
+
       
       mapboxgl.accessToken =
         "pk.eyJ1IjoibW9oYW1tZWRmYXJpc29mZmljaWFsIiwiYSI6ImNrenp1eGdxNTBkcjQzYm54eTJ1NWM4cnUifQ.i0BdrNMcqwUIMU1o5cwJ7g";
@@ -81,26 +55,18 @@
           showUserHeading: true,
         })
       );
-      //code for markers
-      // add markers to map
-for (const feature of geojson.features) {
-  // create a HTML element for each feature
-  const el = document.createElement('div');
-  el.className = 'marker';
-
-  // make a marker for each feature and add to the map
-  new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).addTo(map);
-}
-      //end code for markers
+      
       
        const container = document.querySelector("#container");
+      let lat,lng;
      
       function getLocation() {
   if (navigator.geolocation) {
     console.log("support")
     navigator.geolocation.getCurrentPosition((position)=>{
-      console.log(position)
-      console.log("support 2")
+      lat = position.coords.latitude.toFixed(3)
+      lng position.coords.longitude.toFixed(3
+      
     container.innerHTML = "Latitude: " + position.coords.latitude.toFixed(3) +
   "<br>Longitude: " + position.coords.longitude.toFixed(3);
         console.log(position.coords.latitude)   }                                     
@@ -113,6 +79,56 @@ for (const feature of geojson.features) {
   }
 }
       getLocation()
+      
+      //code for markers
+            const geojson = {
+  type: 'FeatureCollection',
+  features: [
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [-77.032, 38.913]
+      },
+      properties: {
+        title: 'Mapbox',
+        description: 'Washington, D.C.'
+      }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [lat, lng]
+      },
+      properties: {
+        title: 'Mapbox',
+        description: 'Washington, D.C.'
+      }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [-122.414, 37.776]
+      },
+      properties: {
+        title: 'Mapbox',
+        description: 'San Francisco, California'
+      }
+    }
+  ]
+};
+      // add markers to map
+for (const feature of geojson.features) {
+  // create a HTML element for each feature
+  const el = document.createElement('div');
+  el.className = 'marker';
+
+  // make a marker for each feature and add to the map
+  new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).addTo(map);
+}
+      //end code for markers
 
     </script>
   </body>
