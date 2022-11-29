@@ -74,6 +74,7 @@
     navigator.geolocation.getCurrentPosition((position)=>{
       lat=position.coords.latitude.toFixed(3) || 10.916
       lng=position.coords.longitude.toFixed(3) || 75.923
+      
     container.innerHTML = "Latitude: " + position.coords.latitude.toFixed(3) +
   "<br>Longitude: " + position.coords.longitude.toFixed(3);
         console.log(position.coords.latitude)   }                                     
@@ -158,7 +159,69 @@ for (const feature of geojson.features) {
 }
      
       //end code for markers
-
+      
+      //async geojson
+      map.on('load', async () => {
+        const geojson = await getLocation();
+              
+        map.addSource('dynamic', {
+        type: 'geojson',
+        data: geojson
+        })
+        
+        map.addLayer({
+        'id': 'dynamic',
+'type': 'symbol',
+'source': 'dynamic',
+'layout': {
+'icon-image': 'rocket'
+        
+        })
+        
+        const updateSource = setInterval(async () => {
+          const geojson = await getLocation(updateSource);
+          map.getSource('dynamic').setData(geojson);
+          
+        }, 2000);
+        
+        async function getLocation(updateSource) {
+          if (navigator.geolocation) {
+            console.log("support")
+            navigator.geolocation.getCurrentPosition(async (position)=>{
+              
+            const longitude= await position.coords.latitude.toFixed(3)
+            const latitude= await position.coords.longitude.toFixed(3)
+              
+            map.flyTo({
+                center: [longitude, latitude],
+                speed: 0.5
+            });
+              return {
+                  'type': 'FeatureCollection',
+                  'features': [
+                          {
+                            'type': 'Feature',
+                            'geometry': {
+                              'type': 'Point',
+                              'coordinates': [longitude, latitude]
+                            }
+                          }
+                   ]
+              };
+           }                                     
+                                            
+          );
+    
+           } else {
+            console.log("not support")
+            container.innerHTML = "Geolocation is not supported by this browser.";
+           }
+      }
+      }
+      }
+      
+      
+      
     </script>
   </body>
 </html>
