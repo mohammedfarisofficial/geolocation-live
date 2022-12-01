@@ -43,6 +43,8 @@
     <div id="map"></div>
 
     <script>
+      let latText = document.getElementById("latitude");
+      let longText = document.getElementById("longitude");
       mapboxgl.accessToken =
         "pk.eyJ1IjoibW9oYW1tZWRmYXJpc29mZmljaWFsIiwiYSI6ImNrenp1eGdxNTBkcjQzYm54eTJ1NWM4cnUifQ.i0BdrNMcqwUIMU1o5cwJ7g";
       const map = new mapboxgl.Map({
