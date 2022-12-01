@@ -8,9 +8,10 @@
       content="initial-scale=1,maximum-scale=1,user-scalable=no"
     />
     <link
-      href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css"
-      rel="stylesheet"
+    href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css"
+    rel="stylesheet"
     />
+    <script src="/socket.io/socket.io.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
     <style>
       body {
@@ -103,16 +104,23 @@
             });
 
             function DisplayLoc(lat,long){
-              alert(lat,"&",long)
+              map.flyTo({
+              center: [long, lat],
+              speed: 0.5,
+            });
             }
             //  let aposi =await new mapboxgl.LngLat(bposi.longitude,bposi.latitude);
             //  const { longitude,latitude} = aposi
 
             // Fly the map to the location.
-            map.flyTo({
-              center: [longitude, latitude],
-              speed: 0.5,
-            });
+
+
+            // map.flyTo({
+            //   center: [longitude, latitude],
+            //   speed: 0.5,
+            // });
+
+
             // Return the location of the ISS as GeoJSON.
             return {
               type: "FeatureCollection",
