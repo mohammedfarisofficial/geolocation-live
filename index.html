@@ -75,10 +75,10 @@
                      // );
                      // const { latitude, longitude } = await response.json();
                     let bposi
-                     navigator.geolocation.getCurrentPosition(position => {
-                      const bposi = position?.coords;
+                     navigator.geolocation.getCurrentPosition(async position => {
+                      const bposi = await position.coords;
                      })
-                     let { latitude, longitude } = bposi
+                     let { latitude, longitude } =await bposi
                      // Fly the map to the location.
                      map.flyTo({
                          center: [longitude, latitude],
