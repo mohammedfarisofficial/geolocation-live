@@ -69,11 +69,6 @@
           type: "symbol",
           source: "iss",
           layout: {
-            // This icon is a part of the Mapbox Streets style.
-            // To view all images available in a Mapbox style, open
-            // the style in Mapbox Studio and click the "Images" tab.
-            // To add a new image to the style at runtime see
-            // https://docs.mapbox.com/mapbox-gl-js/example/add-image/
             "icon-image": "rocket",
           },
         });
@@ -85,14 +80,13 @@
         }, 2000);
 
         async function getLocation(updateSource) {
-          // Make a GET request to the API and return the location of the ISS.
+
           try {
             // const response = await fetch(
             //   "https://api.wheretheiss.at/v1/satellites/25544",
             //   { method: "GET" }
             // );
             // const { latitude, longitude } = await response.json();
-            // let bposi
             navigator.geolocation.getCurrentPosition((position) => {
               let lat = position.coords.latitude;
               let long = position.coords.longitude;
@@ -121,17 +115,6 @@
                 ],
               };
             }
-            //  let aposi =await new mapboxgl.LngLat(bposi.longitude,bposi.latitude);
-            //  const { longitude,latitude} = aposi
-
-            // Fly the map to the location.
-
-            // map.flyTo({
-            //   center: [longitude, latitude],
-            //   speed: 0.5,
-            // });
-
-            // Return the location of the ISS as GeoJSON.
           } catch (err) {
             // If the updateSource interval is defined, clear the interval to stop updating the source.
             if (updateSource) clearInterval(updateSource);
