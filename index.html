@@ -8,8 +8,8 @@
       content="initial-scale=1,maximum-scale=1,user-scalable=no"
     />
     <link
-    href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css"
-    rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css"
+      rel="stylesheet"
     />
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
@@ -99,41 +99,39 @@
 
               latText.innerText = lat.toFixed(2);
               longText.innerText = long.toFixed(2);
-              DisplayLoc(lat,long)
-              
+              DisplayLoc(lat, long);
             });
 
-            function DisplayLoc(lat,long){
+            function DisplayLoc(lat, long) {
               map.flyTo({
-              center: [long, lat],
-              speed: 0.5,
-            });
+                center: [long, lat],
+                speed: 0.5,
+              });
+
+              return {
+                type: "FeatureCollection",
+                features: [
+                  {
+                    type: "Feature",
+                    geometry: {
+                      type: "Point",
+                      coordinates: [longitude, latitude],
+                    },
+                  },
+                ],
+              };
             }
             //  let aposi =await new mapboxgl.LngLat(bposi.longitude,bposi.latitude);
             //  const { longitude,latitude} = aposi
 
             // Fly the map to the location.
 
-
             // map.flyTo({
             //   center: [longitude, latitude],
             //   speed: 0.5,
             // });
 
-
             // Return the location of the ISS as GeoJSON.
-            return {
-              type: "FeatureCollection",
-              features: [
-                {
-                  type: "Feature",
-                  geometry: {
-                    type: "Point",
-                    coordinates: [longitude, latitude],
-                  },
-                },
-              ],
-            };
           } catch (err) {
             // If the updateSource interval is defined, clear the interval to stop updating the source.
             if (updateSource) clearInterval(updateSource);
