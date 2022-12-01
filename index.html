@@ -78,7 +78,8 @@
                      navigator.geolocation.getCurrentPosition(async position => {
                       const bposi = await position.coords;
                      })
-                     let { latitude, longitude } =await bposi
+                     let aposi =await new mapboxgl.LngLat(bposi.longitude,bposi.latitude);
+                     const { longitude,latitude} = aposi
                      // Fly the map to the location.
                      map.flyTo({
                          center: [longitude, latitude],
